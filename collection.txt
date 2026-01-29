@@ -1,0 +1,36 @@
+POS Mart Stock controll
+
+
+brands	_id,brand_name,description
+
+ categories		_id,category_name
+
+products 		_id,sku,barcode,product_name,category,brand,cost_price,selling_price,qty_in_stock,reorder_level
+
+ purchase_returns		_id,purchase_id,product_id,qty,reason,date
+
+. purchases		_id,supplier_id,date,items(product_id,qty,cost),total_cost
+
+. sales		_id,date,items(product_id,qty,price),total_amount
+
+. sales_returns		_id,sale_id,product_id,qty,reason,date
+
+. stock_adjustments		_id,product_id,qty_change,reason,date
+
+. stock_movements		_id,product_idm,from_location,to_location,qty,date
+
+. stock_transfers		_id,from_location,to_location,items(product_id,qty),date
+
+. suppliers		_id,supplier_name,phone,address,
+
+. warehouse_locations		_id,name
+
+
+
+
+
+
+
+
+
+,
