@@ -135,4 +135,15 @@ const categories = [
           renderTable();
           updateStats();
         }
-      }
+}
+      document.getElementById("productImageInput").onchange = function (evt) {
+        const [file] = this.files;
+        if (file) {
+          const imgPreview = document.getElementById("imgPreview");
+          const previewText = document.getElementById("previewText");
+
+          imgPreview.src = URL.createObjectURL(file);
+          imgPreview.style.display = "block";
+          previewText.style.display = "none";
+        }
+      };
