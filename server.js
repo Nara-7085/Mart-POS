@@ -46,16 +46,17 @@ app.get('/api/health', (req, res) => {
 // POST - Create new brand
 app.post('/api/brands', async (req, res) => {
   try {
-    const { name, description, image } = req.body;
+    const { brand_name, name, description, image } = req.body;
+    const brandName = brand_name || name;
 
     // Validate required fields
-    if (!name) {
+    if (!brandName) {
       return res.status(400).json({ error: 'Brand name is required' });
     }
 
-    // Create new brand
+    // Create new brand (support both `brand_name` and legacy `name`)
     const brand = new Brand({
-      name,
+      brand_name: brandName,
       description,
       image,
     });
@@ -113,10 +114,14 @@ app.get('/api/brands/:id', async (req, res) => {
 // PUT - Update brand
 app.put('/api/brands/:id', async (req, res) => {
   try {
-    const { name, description, image, isActive } = req.body;
+    const { brand_name, name, description, image, isActive } = req.body;
+    const brandName = brand_name || name;
+    const update = { description, image, isActive };
+    if (brandName) update.brand_name = brandName;
+
     const brand = await Brand.findByIdAndUpdate(
       req.params.id,
-      { name, description, image, isActive },
+      update,
       { new: true, runValidators: true }
     );
     if (!brand) {

@@ -21,34 +21,24 @@ mongoose
 // Sample data
 const sampleBrands = [
   {
-    name: 'Nike',
+    brand_name: 'Nike',
     description: 'Leading sports and athletic brand',
-    image: 'nike.jpg',
-    isActive: true,
   },
   {
-    name: 'Adidas',
+    brand_name: 'Adidas',
     description: 'International sports apparel brand',
-    image: 'adidas.jpg',
-    isActive: true,
   },
   {
-    name: 'Puma',
+    brand_name: 'Puma',
     description: 'Sports and lifestyle brand',
-    image: 'puma.jpg',
-    isActive: true,
   },
   {
-    name: 'Apple',
+    brand_name: 'Apple',
     description: 'Technology and electronics brand',
-    image: 'apple.jpg',
-    isActive: true,
   },
   {
-    name: 'Samsung',
+    brand_name: 'Samsung',
     description: 'Electronics and technology brand',
-    image: 'samsung.jpg',
-    isActive: true,
   },
 ];
 
@@ -67,7 +57,7 @@ async function seedDatabase() {
     // Display inserted data
     console.log('\n📊 Brands in database:');
     const allBrands = await Brand.find();
-    console.table(allBrands);
+      console.log(JSON.stringify(allBrands, null, 2));
 
     console.log('\n✅ Database seeding completed successfully!');
   } catch (err) {

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Define Brand Schema
 const brandSchema = new mongoose.Schema(
   {
-    name: {
+    brand_name: {
       type: String,
       required: [true, 'Please provide a brand name'],
       trim: true,
@@ -12,14 +12,6 @@ const brandSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
-    },
-    image: {
-      type: String,
-      default: null,
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
     },
   },
   {

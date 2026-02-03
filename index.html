@@ -161,6 +161,48 @@
         }
       };
     </script>
+
+    <script>
+      // Fetch and display brands (populates brand select and a small list)
+      async function loadBrands() {
+        try {
+          const res = await fetch('/api/brands');
+          const json = await res.json();
+          if (!json.success) return console.error('Failed to load brands', json);
+          const brands = json.data || [];
+
+          // populate brand select in product modal
+          const brandSelect = document.getElementById('brandSelect');
+          if (brandSelect) {
+            brands.forEach(b => {
+              const opt = document.createElement('option');
+              opt.value = b._id;
+              opt.textContent = b.brand_name || b.name || 'Unnamed';
+              brandSelect.appendChild(opt);
+            });
+          }
+
+          // display a simple brands card in the stats area
+          const stats = document.getElementById('stats-container');
+          if (stats) {
+            const card = document.createElement('div');
+            card.className = 'col-12';
+            card.innerHTML = `<div class="card p-3"><h6>Brands (${brands.length})</h6><ul id="brandList" class="list-group list-group-flush"></ul></div>`;
+            stats.appendChild(card);
+            const brandList = document.getElementById('brandList');
+            brands.forEach(b => {
+              const li = document.createElement('li');
+              li.className = 'list-group-item';
+              li.textContent = `${b.brand_name || b.name} — ${b.description || ''}`;
+              brandList.appendChild(li);
+            });
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      loadBrands();
+    </script>
     <script src="./network.js"></script>
   </body>
 </html>
