@@ -8,16 +8,16 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Serve static files from "public" folder
+// Serve static files from project root so HTML pages are reachable
 app.use(
-  express.static(path.join(__dirname, 'public'), {
+  express.static(path.join(__dirname), {
     index: false,
   })
 );
 
 // Route for home page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // MongoDB connection

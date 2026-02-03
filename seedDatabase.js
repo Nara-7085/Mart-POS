@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // Import models
-const Brand = require('./models/brands');
+const Brand = require('../models/brands');
 
 // MongoDB connection
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mart-pos';
